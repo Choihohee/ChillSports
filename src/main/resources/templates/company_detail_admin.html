@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Company update</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .header-image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 15%; /* 이미지 너비를 조정 */
+        }
+        .btn-home {
+            display: block;
+            margin-left: auto;
+            margin-right: 250px;
+            width: fit-content;
+        }
+        .table {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<br>
+<div class="text-center mb-5">
+    <a href="/chillSports/companyList/admin">
+        <img src="/images/image-removebg-preview.png" alt="ChillSports 로고" class="header-image">
+    </a>
+    <div class="mt-3 text-right">
+        <a href="/chillSports/companyList/admin" class="btn btn-info btn-home">홈 화면</a>
+    </div>
+</div>
+<div class="container mt-5">
+    <h1 th:text="${company.conm}">업체 정보를 수정하세요.</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <h5>관리자용 안양 체육시설업 상세페이지</h5>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th scope="row">주소</th>
+                    <td th:text="${company.lctn}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">업종</th>
+                    <td th:text="${company.tpbiz}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">상호명</th>
+                    <td th:text="${company.conm}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">전화번호</th>
+                    <td th:text="${company.telno}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">예약하기 링크 </th>
+                    <td><a th:href="${company.chat_url}" th:text="${company.chat_url}"></a></td>
+                </tr>
+                </tbody>
+            </table>
+            <!-- 수정하기 버튼 -->
+            <a th:href="@{'/chillSports/update/' + ${company.companyId}}" class="btn btn-primary">수정하기</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

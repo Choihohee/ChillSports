@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ChillSports Company List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .header-image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 15%; /* 이미지 너비를 조정 */
+        }
+        .table-container {
+            width: 100%;
+        }
+        .table {
+            width: 100%; /* 테이블 너비를 100%로 설정 */
+        }
+    </style>
+</head>
+<body>
+<br>
+<div class="text-center mb-5">
+    <a href="/chillSports/companyList">
+        <img src="/images/image-removebg-preview.png" alt="ChillSports 로고" class="header-image">
+    </a>
+</div>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-6">
+            <form action="/chillSports/search" method="get" id="searchForm" name="search-form">
+                <div class="form-row align-items-center">
+                    <div class="col-auto">
+                        <select name="type" class="form-control type-box">
+                            <option value="">검색 유형 선택</option>
+                            <option value="tpbiz">업종으로 검색</option>
+                            <option value="conm">상호명으로 검색</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <input class="form-control inputId" type="text" name="keyword" placeholder="검색어 입력">
+                    </div>
+                    <div class="col-auto">
+                        <input class="btn btn-info submitBtn" type="submit" value="검색하기">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="table-container mt-3">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>주소</th>
+                    <th>업종</th>
+                    <th>상호명</th>
+                    <th>전화번호</th>
+                    <th>예약하기</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="company : ${companyList}">
+                    <td th:text="${company.lctn}"></td>
+                    <td th:text="${company.tpbiz}"></td>
+                    <td th:text="${company.conm}"></td>
+                    <td th:text="${company.telno}"></td>
+                    <td>
+                        <a th:href="@{/chillSports/detail/{companyId}(companyId=${company.companyId})}" class="btn btn-info">예약하기</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

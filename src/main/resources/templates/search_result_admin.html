@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ChillSports Company List admin</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .header-image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 15%; /* 이미지 너비를 조정 */
+        }
+        .btn-home {
+            display: block;
+            margin-left: auto;
+            margin-right: 250px; /* 오른쪽 정렬 */
+            width: fit-content;
+        }
+    </style>
+</head>
+<body>
+<br>
+<div class="text-center mb-5">
+    <a href="/chillSports/companyList/admin">
+        <img src="/images/image-removebg-preview.png" alt="ChillSports 로고" class="header-image">
+    </a>
+    <div class="mt-3 text-right">
+        <a href="/chillSports/companyList/admin" class="btn btn-info btn-home">홈 화면</a>
+    </div>
+</div>
+<div class="container mt-5">
+    <h2>검색 결과</h2>
+    <h5>관리자용 안양 체육시설업 검색결과</h5>
+    <div class="table-responsive">
+        <table class="table table-bordered mt-3" style="width: 100%;">
+            <thead>
+            <tr>
+                <th>company ID</th>
+                <th>주소</th>
+                <th>업종</th>
+                <th>상호명</th>
+                <th>전화번호</th>
+                <th>상세보기</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="company : ${searchResult}">
+                <td th:text="${company.companyId}"></td>
+                <td th:text="${company.lctn}"></td>
+                <td th:text="${company.tpbiz}"></td>
+                <td th:text="${company.conm}"></td>
+                <td th:text="${company.telno}"></td>
+                <td>
+                    <a th:href="@{/chillSports/detail/admin/{companyId}(companyId=${company.companyId})}" class="btn btn-info">상세페이지</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
