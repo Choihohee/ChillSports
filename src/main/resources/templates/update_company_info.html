@@ -20,6 +20,12 @@
         .table {
             width: 100%;
         }
+        .btn-group .btn {
+            margin-right: 20px; /* 버튼 간격 설정 */
+        }
+        .btn-group .btn:last-child {
+            margin-right: 0; /* 마지막 버튼의 마진을 없앰 */
+        }
     </style>
 </head>
 <body>
@@ -34,7 +40,7 @@
 </div>
 <div class="container mt-5">
     <h5>업체 정보를 수정하세요.</h5>
-    <form action="#" th:action="@{/chillSports/update/{companyId}(companyId=${company.companyId})}" th:object="${company}" method="post" th:method="put">
+    <form th:action="@{/chillSports/update/{companyId}(companyId=${company.companyId})}" th:object="${company}" method="post">
         <input type="hidden" name="_method" value="put">
         <div class="form-group">
             <label for="lctn">주소</label>
@@ -57,7 +63,13 @@
             <label for="chat_url">예약하기 링크</label>
             <input type="text" id="chat_url" class="form-control" th:field="*{chat_url}" placeholder="예약링크를 입력하세요.">
         </div>
-        <button type="submit" class="btn btn-primary">수정완료</button>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="submit" class="btn btn-info">수정완료</button>
+            <form th:action="@{/chillSports/delete/{companyId}(companyId=${company.companyId})}" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?');">
+                <input type="hidden" name="_method" value="delete">
+                <button type="submit" class="btn btn-danger">삭제하기</button>
+            </form>
+        </div>
     </form>
 </div>
 </body>

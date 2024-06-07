@@ -9,7 +9,7 @@
             display: block;
             margin-left: auto;
             margin-right: auto;
-            width: 15%; /* 이미지 너비를 조정 */
+            width: 15%;
         }
         .btn-home {
             display: block;
@@ -19,6 +19,12 @@
         }
         .table {
             width: 100%;
+        }
+        .btn-group .btn {
+            margin-right: 20px;
+        }
+        .btn-group .btn:last-child {
+            margin-right: 0;
         }
     </style>
 </head>
@@ -62,8 +68,13 @@
                 </tr>
                 </tbody>
             </table>
-            <!-- 수정하기 버튼 -->
-            <a th:href="@{'/chillSports/update/' + ${company.companyId}}" class="btn btn-primary">수정하기</a>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <a th:href="@{'/chillSports/update/' + ${company.companyId}}" class="btn btn-info">수정하기</a>
+                <form th:action="@{'/chillSports/delete/' + ${company.companyId}}" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?');">
+                    <input type="hidden" name="_method" value="delete">
+                    <button type="submit" class="btn btn-danger">삭제하기</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
