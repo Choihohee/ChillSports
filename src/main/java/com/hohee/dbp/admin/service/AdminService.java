@@ -2,6 +2,7 @@ package com.hohee.dbp.admin.service;
 
 import com.hohee.dbp.api.entity.Company;
 import com.hohee.dbp.admin.repository.AdminRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +18,10 @@ public class AdminService {
 
     public void save(Company company) {
         companyRepository.save(company);
+    }
+
+    @Transactional
+    public void delete(Long companyId) {
+        companyRepository.deleteById(companyId);
     }
 }

@@ -51,7 +51,6 @@ public class AdminController {
         List<Company> searchResultByConm = apiService.searchByConm(keyword);
         List<Company> searchResultByTpbiz = apiService.searchByTpbiz(keyword);
 
-        // 두 검색 결과를 합칩니다.
         Set<Company> combinedSearchResult = new HashSet<>();
         combinedSearchResult.addAll(searchResultByConm);
         combinedSearchResult.addAll(searchResultByTpbiz);
@@ -69,10 +68,17 @@ public class AdminController {
     }
 
     // 업체 정보 수정
-    @PostMapping("/update/{companyId}")
+    @PutMapping("/update/{companyId}")
     public String updateCompanyInfo(@PathVariable Long companyId, @ModelAttribute Company company) {
         company.setCompanyId(companyId);
         companyService.save(company);
         return "redirect:/chillSports/detail/admin/" + companyId;
+    }
+
+    //업체 삭제
+    @DeleteMapping("/delete/{companyId}")
+    public String deleteCompany(@PathVariable Long companyId) {
+        companyService.delete(companyId);
+        return "redirect:/chillSports/companyList/admin";
     }
 }
