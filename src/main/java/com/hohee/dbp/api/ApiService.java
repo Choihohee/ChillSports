@@ -1,6 +1,6 @@
 package com.hohee.dbp.api;
 
-import com.hohee.dbp.company.entity.Company;
+import com.hohee.dbp.api.entity.Company;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,10 +1,8 @@
 package com.hohee.dbp.user.controller;
 
-import com.hohee.dbp.api.ApiController;
 import com.hohee.dbp.api.ApiService;
-import com.hohee.dbp.company.entity.Company;
-import com.hohee.dbp.company.service.CompanyService;
-import com.hohee.dbp.user.dto.SearchRequest;
+import com.hohee.dbp.api.entity.Company;
+import com.hohee.dbp.admin.service.AdminService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +22,12 @@ public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
-    private CompanyService companyService;
+    private AdminService companyService;
 
     @Autowired
     private ApiService apiService;
 
-    //사용자 화면이동 -> 업체 리스트 조회
+    //업체 리스트 조회
     @GetMapping("/companyList")
     public String companyList(Model model){
         List<Company> companyList = apiService.getAllCompanies();
@@ -37,7 +35,7 @@ public class UserController {
         return "company_list";
     }
 
-    //사용자 페이지 상세정보 조회
+    //상세정보 조회
     @GetMapping("/detail/{companyId}") // URL에 companyId 포함
     public String detailCompany(Model model, @PathVariable("companyId") Long companyId){
         Company company = companyService.findById(companyId);
@@ -51,7 +49,6 @@ public class UserController {
         List<Company> searchResultByConm = apiService.searchByConm(keyword);
         List<Company> searchResultByTpbiz = apiService.searchByTpbiz(keyword);
 
-        // 두 검색 결과를 합칩니다.
         Set<Company> combinedSearchResult = new HashSet<>();
         combinedSearchResult.addAll(searchResultByConm);
         combinedSearchResult.addAll(searchResultByTpbiz);

@@ -1,6 +1,6 @@
 package com.hohee.dbp.api;
 
-import com.hohee.dbp.company.entity.Company;
+import com.hohee.dbp.api.entity.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
