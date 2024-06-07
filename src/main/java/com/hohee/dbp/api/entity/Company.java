@@ -1,4 +1,4 @@
-package com.hohee.dbp.company.entity;
+package com.hohee.dbp.api.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

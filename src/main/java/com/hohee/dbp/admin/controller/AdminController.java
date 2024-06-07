@@ -1,8 +1,8 @@
-package com.hohee.dbp.company.controller;
+package com.hohee.dbp.admin.controller;
 
 import com.hohee.dbp.api.ApiService;
-import com.hohee.dbp.company.entity.Company;
-import com.hohee.dbp.company.service.CompanyService;
+import com.hohee.dbp.api.entity.Company;
+import com.hohee.dbp.admin.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +15,10 @@ import java.util.Set;
 
 @Controller
 @RequestMapping("/chillSports")
-public class CompanyController {
+public class AdminController {
 
     @Autowired
-    private CompanyService companyService;
+    private AdminService companyService;
 
     @Autowired
     private ApiService apiService;

@@ -1,15 +1,15 @@
-package com.hohee.dbp.company.service;
+package com.hohee.dbp.admin.service;
 
-import com.hohee.dbp.company.entity.Company;
-import com.hohee.dbp.company.repository.CompanyRepository;
+import com.hohee.dbp.api.entity.Company;
+import com.hohee.dbp.admin.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CompanyService {
+public class AdminService {
 
     @Autowired
-    private CompanyRepository companyRepository;
+    private AdminRepository companyRepository;
 
     public Company findById(Long id) {
         return companyRepository.findById(id).orElse(null);
