@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Company update</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .header-image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 15%; /* 이미지 너비를 조정 */
+        }
+        .btn-home {
+            display: block;
+            margin-left: auto;
+            margin-right: 250px;
+            width: fit-content;
+        }
+        .table {
+            width: 100%;
+        }
+        .btn-group .btn {
+            margin-right: 20px; /* 버튼 간격 설정 */
+        }
+        .btn-group .btn:last-child {
+            margin-right: 0; /* 마지막 버튼의 마진을 없앰 */
+        }
+    </style>
+</head>
+<body>
+<br>
+<div class="text-center mb-5">
+    <a href="/chillSports/companyList/admin">
+        <img src="/images/image-removebg-preview.png" alt="ChillSports 로고" class="header-image">
+    </a>
+    <div class="mt-3 text-right">
+        <a href="/chillSports/companyList/admin" class="btn btn-info btn-home">홈 화면</a>
+    </div>
+</div>
+<div class="container mt-5">
+    <h5>업체 정보를 수정하세요.</h5>
+    <form th:action="@{/chillSports/update/{companyId}(companyId=${company.companyId})}" th:object="${company}" method="post">
+        <input type="hidden" name="_method" value="put">
+        <div class="form-group">
+            <label for="lctn">주소</label>
+            <input type="text" id="lctn" class="form-control" th:field="*{lctn}" placeholder="주소를 입력하세요.">
+        </div>
+        <div class="form-group">
+            <label for="tpbiz">업종</label>
+            <input type="text" id="tpbiz" class="form-control" th:field="*{tpbiz}" placeholder="업종을 입력하세요.">
+        </div>
+
+        <div class="form-group">
+            <label for="conm">상호명</label>
+            <input type="text" id="conm" class="form-control" th:field="*{conm}" placeholder="상호명을 입력하세요.">
+        </div>
+        <div class="form-group">
+            <label for="telno">전화번호</label>
+            <input type="text" id="telno" class="form-control" th:field="*{telno}" placeholder="전화번호를 입력하세요.">
+        </div>
+        <div class="form-group">
+            <label for="chat_url">예약하기 링크</label>
+            <input type="text" id="chat_url" class="form-control" th:field="*{chat_url}" placeholder="예약링크를 입력하세요.">
+        </div>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="submit" class="btn btn-info">수정완료</button>
+            <form th:action="@{/chillSports/delete/{companyId}(companyId=${company.companyId})}" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?');">
+                <input type="hidden" name="_method" value="delete">
+                <button type="submit" class="btn btn-danger">삭제하기</button>
+            </form>
+        </div>
+    </form>
+</div>
+</body>
+</html>
